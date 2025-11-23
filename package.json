@@ -1,232 +1,233 @@
 {
-  "name": "strmanip",
-  "displayName": "String Manipulation",
-  "description": "Port of JetBrains String Manipulation plugin for VS Code. Provides case switching (camelCase, snake_case, kebab-case, etc.) and text alignment (vertical alignment, columns, justification) utilities.",
-  "version": "0.0.1",
-  "publisher": "kevinjimenez",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:strmanip.*"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "strmanip.toCamel",
-        "title": "To camelCase",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toSnake",
-        "title": "To snake_case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toKebab",
-        "title": "To kebab-case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toPascal",
-        "title": "To PascalCase",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toConstant",
-        "title": "To SCREAMING_SNAKE_CASE",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toDot",
-        "title": "To dot.case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toTitle",
-        "title": "To Title Case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toSentence",
-        "title": "To Sentence case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toUpper",
-        "title": "To UPPER CASE",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toLower",
-        "title": "To lower case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.invertCase",
-        "title": "Invert Case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.toggleCase",
-        "title": "Toggle Case",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.alignVertical",
-        "title": "Align Carets Vertically",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.alignColumns",
-        "title": "Align to Columns (Separator)",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.justifyLeft",
-        "title": "Justify Left",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.justifyCenter",
-        "title": "Justify Center",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.justifyRight",
-        "title": "Justify Right",
-        "category": "String Manipulation"
-      },
-      {
-        "command": "strmanip.showQuickPick",
-        "title": "Show String Manipulation Menu",
-        "category": "String Manipulation"
-      }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "submenu": "strmanip.menu",
-          "group": "modification",
-          "when": "editorTextFocus"
-        }
-      ],
-      "strmanip.menu": [
-        {
-          "command": "strmanip.toCamel",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toSnake",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toKebab",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toPascal",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toConstant",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toDot",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toTitle",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toSentence",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toUpper",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toLower",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.invertCase",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.toggleCase",
-          "group": "casing"
-        },
-        {
-          "command": "strmanip.alignVertical",
-          "group": "alignment"
-        },
-        {
-          "command": "strmanip.alignColumns",
-          "group": "alignment"
-        },
-        {
-          "command": "strmanip.justifyLeft",
-          "group": "alignment"
-        },
-        {
-          "command": "strmanip.justifyCenter",
-          "group": "alignment"
-        },
-        {
-          "command": "strmanip.justifyRight",
-          "group": "alignment"
-        }
-      ]
+    "name": "strmanip",
+    "displayName": "String Manipulation",
+    "description": "Port of JetBrains String Manipulation plugin for VS Code. Provides case switching (camelCase, snake_case, kebab-case, etc.) and text alignment (vertical alignment, columns, justification) utilities.",
+    "version": "0.0.1",
+    "publisher": "kevinjimenez",
+    "engines": {
+        "vscode": "^1.74.0"
     },
-    "submenus": [
-      {
-        "id": "strmanip.menu",
-        "label": "String Manipulation"
-      }
+    "categories": [
+        "Other"
     ],
-    "keybindings": [
-      {
-        "command": "strmanip.showQuickPick",
-        "key": "alt+m",
-        "mac": "cmd+alt+m",
-        "when": "editorTextFocus"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "test": "vitest",
-    "lint": "eslint src --ext ts",
-    "format": "prettier --write \"src/**/*.ts\""
-  },
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "4.3.0",
-    "@types/node": "18.x",
-    "@types/vscode": "1.74.0",
-    "@typescript-eslint/eslint-plugin": "6.0.0",
-    "@typescript-eslint/parser": "6.0.0",
-    "eslint": "8.42.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-typescript": "3.6.3",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-no-relative-import-paths": "1.5.5",
-    "eslint-plugin-prettier": "5.2.1",
-    "prettier": "3.0.0",
-    "typescript": "5.1.6",
-    "vitest": "1.0.0"
-  },
-  "dependencies": {
-    "change-case": "4.1.2"
-  }
+    "activationEvents": [
+        "onCommand:strmanip.*"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "strmanip.toCamel",
+                "title": "To camelCase",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toSnake",
+                "title": "To snake_case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toKebab",
+                "title": "To kebab-case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toPascal",
+                "title": "To PascalCase",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toConstant",
+                "title": "To SCREAMING_SNAKE_CASE",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toDot",
+                "title": "To dot.case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toTitle",
+                "title": "To Title Case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toSentence",
+                "title": "To Sentence case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toUpper",
+                "title": "To UPPER CASE",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toLower",
+                "title": "To lower case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.invertCase",
+                "title": "Invert Case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.toggleCase",
+                "title": "Toggle Case",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.alignVertical",
+                "title": "Align Carets Vertically",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.alignColumns",
+                "title": "Align to Columns (Separator)",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.justifyLeft",
+                "title": "Justify Left",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.justifyCenter",
+                "title": "Justify Center",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.justifyRight",
+                "title": "Justify Right",
+                "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.showQuickPick",
+                "title": "Show String Manipulation Menu",
+                "category": "String Manipulation"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "submenu": "strmanip.menu",
+                    "group": "modification",
+                    "when": "editorTextFocus"
+                }
+            ],
+            "strmanip.menu": [
+                {
+                    "command": "strmanip.toCamel",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toSnake",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toKebab",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toPascal",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toConstant",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toDot",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toTitle",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toSentence",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toUpper",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toLower",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.invertCase",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.toggleCase",
+                    "group": "casing"
+                },
+                {
+                    "command": "strmanip.alignVertical",
+                    "group": "alignment"
+                },
+                {
+                    "command": "strmanip.alignColumns",
+                    "group": "alignment"
+                },
+                {
+                    "command": "strmanip.justifyLeft",
+                    "group": "alignment"
+                },
+                {
+                    "command": "strmanip.justifyCenter",
+                    "group": "alignment"
+                },
+                {
+                    "command": "strmanip.justifyRight",
+                    "group": "alignment"
+                }
+            ]
+        },
+        "submenus": [
+            {
+                "id": "strmanip.menu",
+                "label": "String Manipulation"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "strmanip.showQuickPick",
+                "key": "alt+m",
+                "mac": "cmd+alt+m",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "test": "vitest",
+        "lint": "eslint src --ext ts",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "typecheck": "tsc --noEmit --incremental"
+    },
+    "devDependencies": {
+        "@trivago/prettier-plugin-sort-imports": "4.3.0",
+        "@types/node": "18.x",
+        "@types/vscode": "1.74.0",
+        "@typescript-eslint/eslint-plugin": "6.0.0",
+        "@typescript-eslint/parser": "6.0.0",
+        "eslint": "8.42.0",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-import-resolver-typescript": "3.6.3",
+        "eslint-plugin-import": "2.31.0",
+        "eslint-plugin-no-relative-import-paths": "1.5.5",
+        "eslint-plugin-prettier": "5.2.1",
+        "prettier": "3.0.0",
+        "typescript": "5.1.6",
+        "vitest": "1.0.0"
+    },
+    "dependencies": {
+        "change-case": "4.1.2"
+    }
 }
