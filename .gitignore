@@ -1,0 +1,7 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+vitest.config.js
+vitest.config.js.map
+
