@@ -1,5 +1,11 @@
 import * as vscode from 'vscode';
 import { processSelection } from 'src/lib/editorHelpers';
+import { alignColumns } from 'src/modules/alignment/alignColumns';
+import { alignVertical } from 'src/modules/alignment/alignVertical';
+import { justifyCenter } from 'src/modules/alignment/utils/justifyCenter';
+import { justifyLeft } from 'src/modules/alignment/utils/justifyLeft';
+import { justifyRight } from 'src/modules/alignment/utils/justifyRight';
+import { processJustification } from 'src/modules/alignment/utils/processJustification';
 import { invertCase } from 'src/modules/casing/invertCase';
 import { toggle } from 'src/modules/casing/toggler';
 import { toCamel } from 'src/modules/casing/utils/transformers/toCamel';
@@ -44,6 +50,67 @@ export function activate(context: vscode.ExtensionContext) {
 
         context.subscriptions.push(disposable);
     });
+
+    // Register alignment commands
+    const alignVerticalDisposable = vscode.commands.registerCommand(
+        'strmanip.alignVertical',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            await alignVertical(editor);
+        },
+    );
+    context.subscriptions.push(alignVerticalDisposable);
+
+    const alignColumnsDisposable = vscode.commands.registerCommand(
+        'strmanip.alignColumns',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            await alignColumns(editor);
+        },
+    );
+    context.subscriptions.push(alignColumnsDisposable);
+
+    const justifyLeftDisposable = vscode.commands.registerCommand(
+        'strmanip.justifyLeft',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            await processJustification(editor, justifyLeft);
+        },
+    );
+    context.subscriptions.push(justifyLeftDisposable);
+
+    const justifyCenterDisposable = vscode.commands.registerCommand(
+        'strmanip.justifyCenter',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            await processJustification(editor, justifyCenter);
+        },
+    );
+    context.subscriptions.push(justifyCenterDisposable);
+
+    const justifyRightDisposable = vscode.commands.registerCommand(
+        'strmanip.justifyRight',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            await processJustification(editor, justifyRight);
+        },
+    );
+    context.subscriptions.push(justifyRightDisposable);
 }
 
 export function deactivate() {}
