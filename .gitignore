@@ -3,3 +3,5 @@ node_modules
 *.vsix
 vitest.config.js
 vitest.config.js.map
+out/
+.cursor/
