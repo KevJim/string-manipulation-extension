@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import * as esbuild from 'esbuild';
 import { resolve } from 'path';
 
@@ -28,7 +29,19 @@ const baseConfig = {
     ], // Handle TypeScript path aliases
 };
 
+// Compile test files with tsc
+function compileTests() {
+    try {
+        execSync('tsc -p tsconfig.test.json', { stdio: 'inherit' });
+    } catch (error) {
+        console.error('Test compilation failed');
+        process.exit(1);
+    }
+}
+
 if (watch) {
+    // Compile tests first
+    compileTests();
     esbuild
         .context(baseConfig)
         .then((context) => {
@@ -37,5 +50,6 @@ if (watch) {
         })
         .catch(() => process.exit(1));
 } else {
+    compileTests();
     esbuild.build(baseConfig).catch(() => process.exit(1));
 }

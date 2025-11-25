@@ -217,17 +217,23 @@
         "compile": "node esbuild.mjs",
         "watch": "node esbuild.mjs --watch",
         "pretest": "npm run compile && npm run lint",
-        "test": "vitest",
+        "test": "npm run compile && npm run compile:tests && node ./out/test/runTest.js",
+        "compile:tests": "tsc -p tsconfig.test.json",
+        "test:unit": "vitest run",
+        "test:unit:watch": "vitest",
         "lint": "eslint src --ext ts",
         "format": "prettier --write \"src/**/*.ts\"",
         "typecheck": "tsc --noEmit --incremental"
     },
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "4.3.0",
+        "@types/glob": "8.1.0",
+        "@types/mocha": "10.0.10",
         "@types/node": "18.x",
         "@types/vscode": "1.74.0",
         "@typescript-eslint/eslint-plugin": "6.0.0",
         "@typescript-eslint/parser": "6.0.0",
+        "@vscode/test-electron": "2.5.2",
         "esbuild": "0.27.0",
         "eslint": "8.42.0",
         "eslint-config-prettier": "9.1.0",
@@ -235,9 +241,11 @@
         "eslint-plugin-import": "2.31.0",
         "eslint-plugin-no-relative-import-paths": "1.5.5",
         "eslint-plugin-prettier": "5.2.1",
+        "glob": "13.0.0",
+        "mocha": "11.7.5",
         "prettier": "3.0.0",
         "typescript": "5.1.6",
-        "vitest": "1.0.0"
+        "vitest": "1.4.0"
     },
     "dependencies": {
         "change-case": "4.1.2"

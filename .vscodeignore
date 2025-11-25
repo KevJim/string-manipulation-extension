@@ -1,11 +1,14 @@
 .vscode/**
 .vscode-test/**
-src/**
+.github/**
 .gitignore
-.prettierrc.json
-.eslintrc.json
-tsconfig.json
-vitest.config.ts
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/.eslintrc.json
 **/*.map
 **/*.ts
+node_modules/
+out/test/
+src/
+tests/
 

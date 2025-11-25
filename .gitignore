@@ -5,3 +5,4 @@ vitest.config.js
 vitest.config.js.map
 out/
 .cursor/
+test-run-results/
