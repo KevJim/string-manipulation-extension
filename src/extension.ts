@@ -111,6 +111,114 @@ export function activate(context: vscode.ExtensionContext) {
         },
     );
     context.subscriptions.push(justifyRightDisposable);
+
+    // Register Quick Pick menu command
+    const showQuickPickDisposable = vscode.commands.registerCommand(
+        'strmanip.showQuickPick',
+        async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showWarningMessage(
+                    'No active editor found. Please open a file first.',
+                );
+                return;
+            }
+
+            // Define Quick Pick items organized by category
+            const quickPickItems: vscode.QuickPickItem[] = [
+                // Casing category header
+                {
+                    label: '$(symbol-text) Casing',
+                    kind: vscode.QuickPickItemKind.Separator,
+                },
+                {
+                    label: 'To camelCase',
+                    detail: 'strmanip.toCamel',
+                },
+                {
+                    label: 'To snake_case',
+                    detail: 'strmanip.toSnake',
+                },
+                {
+                    label: 'To kebab-case',
+                    detail: 'strmanip.toKebab',
+                },
+                {
+                    label: 'To PascalCase',
+                    detail: 'strmanip.toPascal',
+                },
+                {
+                    label: 'To SCREAMING_SNAKE_CASE',
+                    detail: 'strmanip.toConstant',
+                },
+                {
+                    label: 'To dot.case',
+                    detail: 'strmanip.toDot',
+                },
+                {
+                    label: 'To Title Case',
+                    detail: 'strmanip.toTitle',
+                },
+                {
+                    label: 'To Sentence case',
+                    detail: 'strmanip.toSentence',
+                },
+                {
+                    label: 'To UPPER CASE',
+                    detail: 'strmanip.toUpper',
+                },
+                {
+                    label: 'To lower case',
+                    detail: 'strmanip.toLower',
+                },
+                {
+                    label: 'Invert Case',
+                    detail: 'strmanip.invertCase',
+                },
+                {
+                    label: 'Toggle Case',
+                    detail: 'strmanip.toggleCase',
+                },
+                // Alignment category header
+                {
+                    label: '$(align-left) Alignment',
+                    kind: vscode.QuickPickItemKind.Separator,
+                },
+                {
+                    label: 'Align Carets Vertically',
+                    detail: 'strmanip.alignVertical',
+                },
+                {
+                    label: 'Align to Columns (Separator)',
+                    detail: 'strmanip.alignColumns',
+                },
+                {
+                    label: 'Justify Left',
+                    detail: 'strmanip.justifyLeft',
+                },
+                {
+                    label: 'Justify Center',
+                    detail: 'strmanip.justifyCenter',
+                },
+                {
+                    label: 'Justify Right',
+                    detail: 'strmanip.justifyRight',
+                },
+            ];
+
+            // Show Quick Pick and execute selected command
+            const selected = await vscode.window.showQuickPick(quickPickItems, {
+                placeHolder: 'Select a String Manipulation command',
+                matchOnDetail: true,
+            });
+
+            if (selected && selected.detail) {
+                // Execute the selected command
+                await vscode.commands.executeCommand(selected.detail);
+            }
+        },
+    );
+    context.subscriptions.push(showQuickPickDisposable);
 }
 
 export function deactivate() {}

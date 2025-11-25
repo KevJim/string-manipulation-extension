@@ -118,71 +118,71 @@
             "strmanip.menu": [
                 {
                     "command": "strmanip.toCamel",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toSnake",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toKebab",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toPascal",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toConstant",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toDot",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toTitle",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toSentence",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toUpper",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toLower",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.invertCase",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.toggleCase",
-                    "group": "casing"
+                    "group": "1_casing"
                 },
                 {
                     "command": "strmanip.alignVertical",
-                    "group": "alignment"
+                    "group": "2_alignment"
                 },
                 {
                     "command": "strmanip.alignColumns",
-                    "group": "alignment"
+                    "group": "2_alignment"
                 },
                 {
                     "command": "strmanip.justifyLeft",
-                    "group": "alignment"
+                    "group": "2_alignment"
                 },
                 {
                     "command": "strmanip.justifyCenter",
-                    "group": "alignment"
+                    "group": "2_alignment"
                 },
                 {
                     "command": "strmanip.justifyRight",
-                    "group": "alignment"
+                    "group": "2_alignment"
                 }
             ]
         },
