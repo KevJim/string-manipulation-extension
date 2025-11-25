@@ -105,6 +105,11 @@
                 "command": "strmanip.showQuickPick",
                 "title": "Show String Manipulation Menu",
                 "category": "String Manipulation"
+            },
+            {
+                "command": "strmanip.cycleCase",
+                "title": "Cycle Case",
+                "category": "String Manipulation"
             }
         ],
         "menus": {
@@ -194,17 +199,23 @@
         ],
         "keybindings": [
             {
+                "command": "strmanip.cycleCase",
+                "key": "alt+shift+u",
+                "mac": "alt+shift+u",
+                "when": "editorTextFocus"
+            },
+            {
                 "command": "strmanip.showQuickPick",
-                "key": "alt+m",
-                "mac": "cmd+alt+m",
+                "key": "ctrl+shift+u",
+                "mac": "cmd+shift+u",
                 "when": "editorTextFocus"
             }
         ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
+        "compile": "node esbuild.mjs",
+        "watch": "node esbuild.mjs --watch",
         "pretest": "npm run compile && npm run lint",
         "test": "vitest",
         "lint": "eslint src --ext ts",
@@ -217,6 +228,7 @@
         "@types/vscode": "1.74.0",
         "@typescript-eslint/eslint-plugin": "6.0.0",
         "@typescript-eslint/parser": "6.0.0",
+        "esbuild": "0.27.0",
         "eslint": "8.42.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-import-resolver-typescript": "3.6.3",

@@ -22,6 +22,44 @@ import { toUpper } from 'src/modules/casing/utils/transformers/toUpper';
 export function activate(context: vscode.ExtensionContext) {
     console.log('String Manipulation extension is now active');
 
+    // Define case cycling order (most common transformations)
+    const caseCycle = [
+        { command: 'strmanip.toCamel', handler: toCamel, label: 'camelCase' },
+        { command: 'strmanip.toSnake', handler: toSnake, label: 'snake_case' },
+        { command: 'strmanip.toKebab', handler: toKebab, label: 'kebab-case' },
+        { command: 'strmanip.toPascal', handler: toPascal, label: 'PascalCase' },
+        { command: 'strmanip.toConstant', handler: toConstant, label: 'SCREAMING_SNAKE_CASE' },
+        { command: 'strmanip.toTitle', handler: toTitle, label: 'Title Case' },
+        { command: 'strmanip.toUpper', handler: toUpper, label: 'UPPER CASE' },
+        { command: 'strmanip.toLower', handler: toLower, label: 'lower case' },
+    ];
+
+    // Register cycle case command
+    const cycleCaseDisposable = vscode.commands.registerCommand('strmanip.cycleCase', async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return;
+        }
+
+        // Get current cycle index from global state, default to 0
+        const cycleIndexKey = 'strmanip.cycleIndex';
+        const currentIndex = context.globalState.get<number>(cycleIndexKey, 0);
+
+        // Get the next transformation in the cycle
+        const nextIndex = (currentIndex + 1) % caseCycle.length;
+        const { handler, label } = caseCycle[nextIndex];
+
+        // Apply the transformation
+        await processSelection(editor, handler);
+
+        // Update the cycle index for next time
+        await context.globalState.update(cycleIndexKey, nextIndex);
+
+        // Show a brief status message
+        vscode.window.setStatusBarMessage(`→ ${label}`, 1000);
+    });
+    context.subscriptions.push(cycleCaseDisposable);
+
     // Register casing commands
     const casingCommands = [
         { command: 'strmanip.toCamel', handler: toCamel },
