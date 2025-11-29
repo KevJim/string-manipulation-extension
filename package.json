@@ -4,6 +4,12 @@
     "description": "Port of JetBrains String Manipulation plugin for VS Code. Provides case switching (camelCase, snake_case, kebab-case, etc.) and text alignment (vertical alignment, columns, justification) utilities.",
     "version": "0.0.1",
     "publisher": "kevinjimenez",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/KevJim/string-manipulation-extension.git"
+    },
+    "author": "kevinjimenez",
     "engines": {
         "vscode": "^1.74.0"
     },
